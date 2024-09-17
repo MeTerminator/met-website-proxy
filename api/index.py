@@ -1,11 +1,7 @@
-from flask import Flask
+from flask import Flask, redirect
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return 'Hello, World!'
-
-@app.route('/about')
-def about():
-    return 'About'
+    return redirect('https://www.met6.top:444/', code=301)
