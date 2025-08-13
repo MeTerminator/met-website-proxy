@@ -33,6 +33,11 @@ def music_v1():
     return redirect('https://music.met6.top:444/v1.php')
 
 
+@app.route('/likemusic/')
+def likemusic():
+    return redirect('https://music.met6.top:444/likemusic/')
+
+
 @app.route('/files/')
 def files():
     return redirect('https://files.met6.top:444/')
