@@ -19,7 +19,7 @@ def shop():
 
 
 @app.route('/mcsdf/')
-def necl():
+def mcsdf():
     return redirect('https://mcsdf.met6.top:444/')
 
 
