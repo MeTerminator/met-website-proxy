@@ -18,6 +18,11 @@ def shop():
     return redirect('https://shop.met6.top:444/')
 
 
+@app.route('/mcsdf/')
+def necl():
+    return redirect('https://mcsdf.met6.top:444/')
+
+
 @app.route('/necl/')
 def necl():
     return redirect('https://www.brmc.top:444/necl/')
