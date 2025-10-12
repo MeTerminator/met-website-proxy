@@ -1,6 +1,11 @@
-from flask import Flask, redirect
+from flask import Flask, redirect, send_from_directory
+import os
 
 app = Flask(__name__)
+
+"""
+Links
+"""
 
 
 @app.route('/')
@@ -61,3 +66,14 @@ def blog():
 @app.route('/blcloud/')
 def blcloud():
     return redirect('https://blcloud.met6.top:444/')
+
+
+"""
+Resources
+"""
+RES_DIR = os.path.join(os.path.dirname(__file__), "../res")
+
+
+@app.route('/res/logo.png')
+def res_logo():
+    return send_from_directory(RES_DIR, 'logo.png')
