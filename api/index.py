@@ -28,11 +28,6 @@ def mcsdf():
     return redirect('https://mcsdf.met6.top:444/')
 
 
-@app.route('/necl/')
-def necl():
-    return redirect('https://www.brmc.top:444/necl/')
-
-
 @app.route('/music/')
 def music():
     return redirect('https://music.met6.top:444/')
