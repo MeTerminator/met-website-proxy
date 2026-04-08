@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeTerminator | 个人名片</title>
+    <link rel="icon" href="/res/favicon.ico" type="image/x-icon">
+    <meta name="description" content="MeTerminator 个人名片">
+    <link rel="stylesheet" href="/res/bio.css">
+</head>
+
+<body>
+    <div class="card-container">
+        <!-- Main Card -->
+        <div id="main-card" class="profile-card">
+            <div class="avatar-box">
+                <img src="/res/avatar_QQ3532095196.jpg" alt="MeTerminator" class="avatar">
+            </div>
+            <h1 class="nickname"><a href="https://www.met6.top:444/" target="_blank">MeTerminator</a></h1>
+            <a href="https://www.met6.top:444/" class="home-link" target="_blank">
+                个人主页
+            </a>
+            <div class="qr-section">
+                <div class="qr-box">
+                    <img src="/res/qrcode_QQ3532095196.svg" alt="QQ QR Code" class="qr-code">
+                </div>
+                <div class="qq-display" onclick="copyQQ('3532095196')">
+                    QQ: 3532095196
+                </div>
+            </div>
+            <a href="https://qm.qq.com/q/CUG7wzOxDE" class="primary-btn" target="_blank">添加好友</a>
+        </div>
+
+        <!-- Furry Card -->
+        <div id="furry-card" class="profile-card">
+            <div class="avatar-box">
+                <img src="/res/avatar_QQ3578235616.jpg" alt="MeTerminator" class="avatar">
+            </div>
+            <h1 class="nickname"><a href="https://www.met6.top:444/" target="_blank">MeTerminator</a></h1>
+            <a href="https://www.met6.top:444/" class="home-link" target="_blank">
+                个人主页
+            </a>
+            <div class="qr-section">
+                <div class="qr-box">
+                    <img src="/res/qrcode_QQ3578235616.svg" alt="QQ QR Code" class="qr-code">
+                </div>
+                <div class="qq-display" onclick="copyQQ('3578235616')">
+                    QQ: 3578235616
+                </div>
+            </div>
+            <a href="https://qm.qq.com/q/irysRcYiC4" class="primary-btn" target="_blank">添加好友</a>
+        </div>
+    </div>
+
+    <div class="footer-nav">
+        <div id="nav-main" class="nav-item" onclick="switchTo('main')">QQ for Main</div>
+        <div id="nav-furry" class="nav-item" onclick="switchTo('furry')">QQ for Furry</div>
+    </div>
+
+    <div id="toast" class="toast">QQ 已复制到剪贴板</div>
+
+    <script src="/res/bio.js"></script>
+</body>
+
+</html>
