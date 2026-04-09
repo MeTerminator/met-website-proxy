@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>MeTerminator | 个人名片</title>
     <link rel="icon" href="/res/favicon.ico" type="image/x-icon">
     <meta name="description" content="MeTerminator 个人名片">
@@ -14,10 +14,12 @@
     <div class="card-container">
         <!-- Main Card -->
         <div id="main-card" class="profile-card">
-            <div class="avatar-box">
-                <img src="/res/avatar_QQ3532095196.jpg" alt="MeTerminator" class="avatar">
-            </div>
-            <h1 class="nickname"><a href="https://www.met6.top:444/" target="_blank">MeTerminator</a></h1>
+            <a href="https://www.met6.top:444/" target="_blank" class="header-link">
+                <div class="avatar-box">
+                    <img src="/res/avatar_QQ3532095196.jpg" alt="MeTerminator" class="avatar">
+                </div>
+                <h1 class="nickname">MeTerminator</h1>
+            </a>
             <a href="https://www.met6.top:444/" class="home-link" target="_blank">
                 个人主页
             </a>
@@ -36,10 +38,12 @@
 
         <!-- Furry Card -->
         <div id="furry-card" class="profile-card">
-            <div class="avatar-box">
-                <img src="/res/avatar_QQ3578235616.jpg" alt="MeTerminator" class="avatar">
-            </div>
-            <h1 class="nickname"><a href="https://www.met6.top:444/" target="_blank">MeTerminator</a></h1>
+            <a href="https://www.met6.top:444/" target="_blank" class="header-link">
+                <div class="avatar-box">
+                    <img src="/res/avatar_QQ3578235616.jpg" alt="MeTerminator" class="avatar">
+                </div>
+                <h1 class="nickname">MeTerminator</h1>
+            </a>
             <a href="https://www.met6.top:444/" class="home-link" target="_blank">
                 个人主页
             </a>
@@ -57,9 +61,19 @@
         </div>
     </div>
 
-    <div class="footer-nav">
-        <div id="nav-main" class="nav-item" onclick="switchTo('main')">QQ for Main</div>
-        <div id="nav-furry" class="nav-item" onclick="switchTo('furry')">QQ for Furry</div>
+    <div class="footer-selector">
+        <div class="selector-toggle" onclick="toggleSelector()" id="selector-toggle">
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        </div>
+        <div class="footer-nav-wrapper" id="selector-wrapper">
+            <div class="footer-nav">
+                <div id="nav-main" class="nav-item" onclick="switchTo('main')">QQ for Main</div>
+                <div id="nav-furry" class="nav-item" onclick="switchTo('furry')">QQ for Furry</div>
+            </div>
+        </div>
     </div>
 
     <div id="toast" class="toast">QQ 已复制到剪贴板</div>

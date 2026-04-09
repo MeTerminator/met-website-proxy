@@ -29,6 +29,13 @@ function switchTo(type) {
     }
 }
 
+function toggleSelector() {
+    const wrapper = document.getElementById('selector-wrapper');
+    const toggle = document.getElementById('selector-toggle');
+    const isExpanded = wrapper.classList.toggle('expanded');
+    toggle.classList.toggle('active');
+}
+
 function copyQQ(num) {
     navigator.clipboard.writeText(num).then(() => {
         const toast = document.getElementById('toast');
