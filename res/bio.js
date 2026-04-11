@@ -47,6 +47,29 @@ function copyQQ(num) {
 window.addEventListener('DOMContentLoaded', () => {
     const hash = window.location.hash.replace('#', '');
     switchTo(hash === 'furry' ? 'furry' : 'main');
+
+    const urlParams = new URLSearchParams(window.location.search);
+    if (document.referrer && !urlParams.has('ref')) {
+        urlParams.append('ref', document.referrer);
+    }
+
+    if (urlParams.toString()) {
+        document.querySelectorAll('a[href^="http"]').forEach(a => {
+            try {
+                const linkUrl = new URL(a.href);
+                if (linkUrl.hostname.includes('met6.top')) {
+                    urlParams.forEach((value, key) => {
+                        if (!linkUrl.searchParams.has(key)) {
+                            linkUrl.searchParams.append(key, value);
+                        }
+                    });
+                    a.href = linkUrl.toString();
+                }
+            } catch (e) {
+                console.error("URL 解析失败:", e);
+            }
+        });
+    }
 });
 
 window.addEventListener('hashchange', () => {
