@@ -17,17 +17,31 @@ def redirect_with_tracking(target_url):
         url_parts[4] = urlencode(query, doseq=True)
 
     final_url = urlunparse(url_parts)
+    if isinstance(final_url, bytes):
+        final_url = final_url.decode('utf-8')
     return redirect(final_url)
+
+
+def should_redirect_to_target():
+    host = request.host.lower()
+    host_name = host.split(':')[0]
+    return host_name in ['met6.top', 'www.met6.top']
 
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return redirect_with_tracking("https://www.met6.top:444/")
+    if should_redirect_to_target():
+        return redirect_with_tracking("https://www.met6.top:444/")
+    else:
+        return send_from_directory(PAGES_DIR, "bio.html")
 
 
 @app.route("/")
 def home():
-    return redirect_with_tracking("https://www.met6.top:444/")
+    if should_redirect_to_target():
+        return redirect_with_tracking("https://www.met6.top:444/")
+    else:
+        return send_from_directory(PAGES_DIR, "bio.html")
 
 
 @app.route("/mcsdf/")
