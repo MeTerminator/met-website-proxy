@@ -321,10 +321,10 @@ body::after {
 .identity-panel {
     background: transparent;
     border: none;
-    border-left: 4.5px solid #ffffff;
+    border-left: 10px solid #ffffff;
     /* Premium thick white vertical bar */
     border-radius: 0;
-    padding: 0 0 0 16px;
+    padding: 0 0 0 10px;
     /* Spacing between text and left bar */
     margin: 0;
     /* Margins removed; vertical centering is perfectly handled by parent flexbox */
@@ -466,7 +466,7 @@ body::after {
 }
 
 .cartridge-qr:hover {
-    transform: scale(1.08);
+    transform: scale(1.04);
     /* Small dynamic hover scaling */
 }
 
@@ -489,7 +489,7 @@ body::after {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 4px 0;
+    padding: 1px 0;
     background: none !important;
     /* strictly no background */
     border: none !important;
