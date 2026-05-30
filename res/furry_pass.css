@@ -1,0 +1,649 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Share+Tech+Mono&family=Caveat:wght@700&family=Noto+Sans+SC:wght@300;400;700&family=Syncopate:wght@700&display=swap');
+
+:root {
+    --bg-dark: #060709;
+    --accent-blue: #3b82f6;
+    --accent-teal: #00ffcc;
+    --accent-red: #ff3b30;
+    --glass-bg: rgba(10, 13, 20, 0.45);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --text-mono: 'Share Tech Mono', monospace;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-dark);
+    font-family: 'Outfit', 'Noto Sans SC', sans-serif;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /* Completely non-scrollable */
+    position: relative;
+    padding: 20px;
+    perspective: 1000px;
+}
+
+/* Sci-fi background grid and neon spots */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.008) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.008) 1px, transparent 1px);
+    background-size: 30px 30px;
+    z-index: -2;
+    pointer-events: none;
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.06) 0%, transparent 70%);
+    top: 10%;
+    left: -10%;
+    z-index: -1;
+    pointer-events: none;
+    filter: blur(80px);
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
+/* PASS CARD WRAPPER - FIXED PERCENTAGE HEIGHT & ASPECT RATIO */
+.card-wrapper {
+    height: 82vh;
+    /* Fixed percentage of viewport height */
+    aspect-ratio: 3 / 5;
+    /* Keep fixed aspect ratio */
+    /* max-height: 720px; */
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease;
+    will-change: transform;
+}
+
+/* Stereoscopic 3D solid white offset shadow */
+.card-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    /* Default centered behind card wrapper */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    /* Solid white rectangle shadow */
+    z-index: -1;
+    /* Placed behind the card wrapper */
+    pointer-events: none;
+    border-radius: 0;
+    transform: translateZ(-8px) translate(var(--shadow-shift-x, 0%), var(--shadow-shift-y, 0%));
+    /* Dynamic shift in opposite direction of mouse (up to 2%) */
+    transition: transform 0.1s ease;
+}
+
+/* Actual physical glass card container */
+.pass-card {
+    width: 100%;
+    height: 100%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1.5px solid var(--glass-border);
+    border-radius: 0;
+    /* Remove border-radius for sharp retro-futuristic look */
+    position: relative;
+    overflow: hidden;
+    /* Clips the child elements perfectly */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow:
+        0 25px 50px rgba(0, 0, 0, 0.55),
+        inset 0 0 15px rgba(255, 255, 255, 0.01);
+    z-index: 10;
+    container-type: size;
+    /* Enables CQ height units inside the card */
+}
+
+/* Cyan lighting glow effect (#0096CD) at top right, placed under vertical text & character */
+.pass-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 100% 0%, rgba(0, 150, 205, 0.45) 0%, transparent 40%);
+    /* Radius is ~40% of card width */
+    pointer-events: none;
+    z-index: 3;
+    /* Placed under vertical text (z-index 4) and character (z-index 5/6) */
+}
+
+/* High-tech glass reflection shine overlay */
+.hologram-sheen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.04) 30%,
+            rgba(0, 255, 204, 0.06) 45%,
+            rgba(59, 130, 246, 0.06) 55%,
+            transparent 70%);
+    background-size: 200% 200%;
+    background-position: var(--sheen-x, 0%) var(--sheen-y, 0%);
+    pointer-events: none;
+    z-index: 40;
+    mix-blend-mode: overlay;
+    transition: background-position 0.1s ease;
+}
+
+/* Outer Glow */
+.pass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    /* Remove border-radius */
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.05);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* TOP HEADER OF CARD */
+.card-header {
+    padding: 20px 20px 0 24%;
+    /* Clear 20% wide side panel on the left */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+.card-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo-icon {
+    width: 20px;
+    height: 20px;
+    stroke: var(--accent-teal);
+}
+
+.logo-text {
+    font-family: var(--text-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #ffffff;
+    opacity: 0.85;
+}
+
+.card-class {
+    font-family: var(--text-mono);
+    font-size: 8px;
+    color: var(--accent-red);
+    border: 1px solid rgba(255, 59, 48, 0.3);
+    padding: 2px 6px;
+    border-radius: 4px;
+    background-color: rgba(255, 59, 48, 0.05);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+
+/* VERTICAL ROTATED BG TEXT "MeT-Furry" - Solid white background rectangle with transparent carved text (cutout effect) */
+.vertical-bg-text {
+    position: absolute;
+    top: 40px;
+    right: 8px;
+    bottom: 180px;
+    /* spans the main vertical height */
+    width: calc((100cqh - 220px) * 0.1714);
+    /* Natively matches the SVG aspect ratio (120/700) exactly */
+    min-width: 45px;
+    max-width: 95px;
+    display: block;
+    pointer-events: none;
+    z-index: 4;
+    /* Placed under the character illustration (z-index 5/6) */
+
+    /* Box Aesthetics */
+    border-radius: 0;
+    /* Sharp rectangular edges with no border-radius */
+    filter: drop-shadow(0 8px 30px rgba(0, 0, 0, 0.25));
+    /* Premium tactical floating shadow */
+    overflow: hidden;
+    /* Clips the bottom overflow when container is too short */
+}
+
+
+/* CHARACTER CONTAINER - FILLS 100% OF CARD HEIGHT */
+.char-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Fill the entire card height */
+    z-index: 5;
+    pointer-events: none;
+    display: flex;
+    align-items: flex-end;
+    /* Align character to bottom edge of card */
+    justify-content: center;
+}
+
+.char-img {
+    height: 98%;
+    /* Stretch almost fully to cover full card height */
+    width: auto;
+    object-fit: contain;
+    position: relative;
+    bottom: 0;
+    z-index: 6;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5)) brightness(1.03);
+    transform: translateZ(30px) scale(1.03);
+    /* Parallax pop out */
+    transition: transform 0.1s ease;
+}
+
+
+/* BOTTOM INFO SECTION WITH FIXED COLOR MASK & BLUR FILTER (CLIPPED TO BOTTOM OF CARD) */
+.card-bottom {
+    padding: clamp(10px, 1.8cqh, 16px) 20px clamp(10px, 1.8cqh, 16px) 24%;
+    /* Reduced top/bottom padding to make elements fit tightly */
+    z-index: 10;
+    background: rgba(0, 122, 213, 0.85) !important;
+    /* Set to theme color #007AD5 with opacity for high-tech look */
+    backdrop-filter: blur(15px);
+    /* Blur behind the mask */
+    -webkit-backdrop-filter: blur(15px);
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    width: 100%;
+    border-radius: 0;
+    /* Sits perfectly flat on the bottom of card, removed rounded corners */
+    position: relative;
+    /* Context for absolute positioned button-cartridge */
+
+    /* MODIFIED: Takes exactly 1/3 of the entire card height */
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: auto;
+    /* Anchors card-bottom strictly to the bottom of the card now that the header has been deleted */
+}
+
+/* BOTTOM TOP SECTION FOR PERFECT VERTICAL CENTERING ABOVE THE LINE */
+.card-bottom-top {
+    display: flex;
+    align-items: center;
+    /* Perfect vertical centering in the space */
+    justify-content: flex-start;
+    flex-grow: 1;
+    /* Stretch to fill space above the line */
+    width: 100%;
+}
+
+/* IDENTITY PANEL - LEFT ALIGNED WITH THICK WHITE VERTICAL BAR */
+.identity-panel {
+    background: transparent;
+    border: none;
+    border-left: 4.5px solid #ffffff;
+    /* Premium thick white vertical bar */
+    border-radius: 0;
+    padding: 0 0 0 16px;
+    /* Spacing between text and left bar */
+    margin: 0;
+    /* Margins removed; vertical centering is perfectly handled by parent flexbox */
+    text-align: left;
+}
+
+.id-name {
+    font-size: clamp(20px, 3.8cqh, 32px);
+    /* Upgraded, larger and adaptive font size */
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    line-height: 1.1;
+}
+
+.id-title {
+    font-family: var(--text-mono);
+    font-size: clamp(10px, 1.8cqh, 13px);
+    /* Upgraded, larger and adaptive font size */
+    color: #ffffff !important;
+    /* White text */
+    font-style: italic !important;
+    /* Italic */
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.separator-line {
+    width: auto;
+    /* Let width expand freely between negative margins */
+    margin-left: calc(-24% / 0.76);
+    /* Pulls line exactly flush against left edge of card */
+    margin-right: -20px;
+    /* Pulls line exactly flush against right edge of card */
+    height: 1px;
+    background-color: #ffffff !important;
+    /* Pure white line */
+    opacity: 1 !important;
+    /* Full opacity */
+    margin-top: 4px;
+    margin-bottom: clamp(6px, 1.2cqh, 12px);
+    /* Tighter margin below separator */
+}
+
+/* Micro Tactical Details Grid */
+.detail-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 2;
+}
+
+.detail-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.serial-num {
+    font-family: var(--text-mono);
+    font-size: clamp(11px, 1.8cqh, 14.5px);
+    /* Upgraded and adaptive serial number size */
+    color: #ffffff;
+    opacity: 0.65;
+}
+
+.serial-num a {
+    color: var(--accent-teal);
+    text-decoration: none;
+}
+
+.serial-num a:hover {
+    text-decoration: underline;
+}
+
+.serial-num span {
+    color: inherit;
+    font-weight: bold;
+}
+
+/* Digital Autograph Signature */
+.signature-box {
+    margin-top: -2px;
+}
+
+.signature {
+    font-family: 'Caveat', cursive;
+    font-size: clamp(24px, 3.8cqh, 32px);
+    /* Upgraded and adaptive signature size */
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 1px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    transform: rotate(-2deg);
+    display: inline-block;
+}
+
+/* TACTICAL FLOATING PANEL (100% Height, translateY(-8%), 20% Width, Positioned Left) */
+.button-cartridge {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    /* 100% of card-bottom height */
+    width: 20%;
+    background: #ffffff !important;
+    /* Pure white solid background, completely opaque */
+    border: none;
+    border-radius: 0 8px 8px 0;
+    /* Docked left: sharp left corners, elegant rounded right corners */
+    z-index: 45;
+    /* overlays card-bottom details */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Aligns QR code at the top */
+    align-items: center;
+    box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.25);
+    /* Shadow offset to the right since it's on the left */
+    pointer-events: auto;
+    transform: translateY(-8%);
+    /* upward shift of 8% height */
+    padding: clamp(10px, 2cqh, 16px) 0;
+    /* Adaptive vertical padding */
+}
+
+/* Styled QQ QR Code Image inside Cartridge */
+.cartridge-qr {
+    width: 80%;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    /* Soft gray border to isolate QR code */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    margin-bottom: clamp(6px, 1.2cqh, 12px);
+    /* Spacing below the QR code */
+    transition: transform 0.3s ease;
+}
+
+.cartridge-qr:hover {
+    transform: scale(1.08);
+    /* Small dynamic hover scaling */
+}
+
+/* INTEGRATED SQUARE BUTTONS STACKED VERTICALLY */
+.card-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    /* Stacked below QR code */
+    gap: clamp(8px, 1.5cqh, 15px);
+    /* Adaptive, compact button gaps */
+    width: 100%;
+    flex-grow: 1;
+    /* Stretch to fill remaining space */
+    padding: 5px 0;
+}
+
+.card-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 0;
+    background: none !important;
+    /* strictly no background */
+    border: none !important;
+    /* strictly no border */
+    border-radius: 0;
+    font-family: var(--text-mono);
+    font-size: clamp(10px, 1.8cqh, 13px);
+    /* Adaptive, larger button font sizes */
+    font-weight: 800;
+    color: #000000 !important;
+    /* Black text on white background */
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    position: relative;
+    transition: color 0.3s ease;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.card-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 1.5px;
+    background-color: #000000;
+    /* Black underline hover */
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.card-btn:hover {
+    color: #000000 !important;
+}
+
+.card-btn:hover::after {
+    width: 80%;
+    /* underline grows to 80% wide on hover */
+}
+
+.btn-divider {
+    width: 30%;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.12);
+    /* Darker thin separator visible on white background */
+}
+
+
+/* Extremely tiny technical footer */
+.tactical-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    padding-top: 8px;
+    margin-top: clamp(6px, 1.2cqh, 14px);
+    font-size: clamp(7.5px, 1.2cqh, 9.5px);
+    /* Adaptive footer font sizes */
+    color: rgba(255, 255, 255, 0.25);
+    font-family: var(--text-mono);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+}
+
+
+/* Keyframes for loading animation */
+@keyframes cardEntrance {
+    0% {
+        opacity: 0;
+        transform: scale(0.95) rotateY(10deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) rotateY(0);
+    }
+}
+
+.card-wrapper {
+    animation: cardEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Adapt for small screen heights */
+@media (max-height: 600px) {
+    .card-wrapper {
+        height: 86vh;
+    }
+
+    .id-name {
+        font-size: 16px;
+    }
+
+    .signature {
+        font-size: 20px;
+    }
+}
+
+/* Mobile fullscreen mode: no margins, no wrapper, card occupies 100% of viewport */
+@media (max-width: 576px) {
+
+    html,
+    body {
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: hidden !important;
+        width: 100% !important;
+        height: 100% !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        position: fixed !important;
+        /* Locks viewport location strictly */
+        touch-action: none !important;
+        /* Disables drag/bounce of the viewport out of screen bounds on mobile devices */
+    }
+
+    .container {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        max-width: none !important;
+        max-height: none !important;
+    }
+
+    .card-wrapper {
+        width: 100% !important;
+        height: 100% !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        aspect-ratio: auto !important;
+        transform: none !important;
+        /* Disable 3D tilt on mobile */
+        animation: none !important;
+        max-width: none !important;
+        max-height: none !important;
+    }
+
+    .card-wrapper::before {
+        display: none !important;
+        /* Hide solid white 3D shadow on mobile full screen */
+    }
+
+    .pass-card {
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .card-bottom {
+        border-radius: 0 !important;
+    }
+}

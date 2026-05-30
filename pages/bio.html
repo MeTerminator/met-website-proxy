@@ -1,91 +1,153 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>MeTerminator | 个人名片</title>
+    <title>MeTerminator | Furry Pass</title>
     <link rel="icon" href="/res/favicon.ico" type="image/x-icon">
-    <meta name="description" content="MeTerminator 个人名片">
-    <link rel="stylesheet" href="/res/bio.css">
+    <meta name="description" content="MeTerminator's Furry Pass ID - Cyberpunk tactical credential">
+    <link rel="stylesheet" href="/res/furry_pass.css">
 </head>
 
 <body>
-    <div class="card-container">
-        <!-- Main Card -->
-        <div id="main-card" class="profile-card">
-            <a href="https://www.met6.top:444/" target="_blank" class="header-link">
-                <div class="avatar-box">
-                    <img src="/res/avatar_QQ3532095196.jpg" alt="MeTerminator" class="avatar">
-                </div>
-                <h1 class="nickname">MeTerminator</h1>
-            </a>
-            <a href="https://www.met6.top:444/" class="home-link" target="_blank">
-                个人主页
-            </a>
-            <div class="qr-section">
-                <a href="https://qm.qq.com/q/CUG7wzOxDE" target="_blank">
-                    <div class="qr-box">
-                        <img src="/res/qrcode_QQ3532095196.png" alt="QQ QR Code" class="qr-code">
-                    </div>
-                </a>
-                <div class="qq-display" onclick="copyQQ('3532095196')">
-                    QQ: 3532095196
-                </div>
-            </div>
-            <a href="https://qm.qq.com/q/CUG7wzOxDE" class="primary-btn" target="_blank">添加好友</a>
-        </div>
+    <div class="container" id="pass-container">
+        <!-- 3D PARALLAX CARD WRAPPER -->
+        <div class="card-wrapper" id="pass-card-wrapper">
+            <div class="pass-card">
+                <!-- Holographic Glare Overlay -->
+                <div class="hologram-sheen" id="hologram-sheen"></div>
 
-        <!-- Furry Card -->
-        <div id="furry-card" class="profile-card">
-            <a href="https://www.met6.top:444/" target="_blank" class="header-link">
-                <div class="avatar-box">
-                    <img src="/res/avatar_QQ3578235616.jpg" alt="MeTerminator" class="avatar">
+                <!-- BACKGROUND HUGE TEXT (Vector SVG Mask for 100% Cross-Browser Cutout Transparency) -->
+                <div class="vertical-bg-text">
+                    <svg viewBox="0 0 120 700" preserveAspectRatio="xMidYMin meet"
+                        style="width: 100%; height: 100%; display: block;" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <mask id="text-mask">
+                                <rect width="120" height="700" fill="#ffffff" />
+                                <text x="60" y="30" fill="#000000" font-family="'Outfit', sans-serif" font-size="100"
+                                    font-weight="900" letter-spacing="-3" text-anchor="start"
+                                    dominant-baseline="central" writing-mode="vertical-rl">FURRY - MET</text>
+                            </mask>
+                        </defs>
+                        <rect width="120" height="700" fill="#ffffff" mask="url(#text-mask)" />
+                    </svg>
                 </div>
-                <h1 class="nickname">MeTerminator</h1>
-            </a>
-            <a href="https://www.met6.top:444/" class="home-link" target="_blank">
-                个人主页
-            </a>
-            <div class="qr-section">
-                <a href="https://qm.qq.com/q/irysRcYiC4" target="_blank">
-                    <div class="qr-box">
-                        <img src="/res/qrcode_QQ3578235616.png" alt="QQ QR Code" class="qr-code">
+
+                <!-- CHARACTER IMAGE (FILLS CARD HEIGHT) -->
+                <div class="char-container">
+                    <img src="/res/furry_Illustration.webp" alt="Furry Character" class="char-img" id="char-image">
+                </div>
+
+                <!-- CARD BOTTOM (Tactical Identity Details with Mask and Blur) -->
+                <div class="card-bottom">
+                    <div class="card-bottom-top">
+                        <div class="identity-panel">
+                            <div class="id-name">MeTerminator</div>
+                            <div class="id-title">FULL-STACK DEVELOPER / CTF LOVER</div>
+                        </div>
                     </div>
-                </a>
-                <div class="qq-display" onclick="copyQQ('3578235616')">
-                    QQ: 3578235616
+                    <div class="separator-line"></div>
+
+                    <div class="detail-grid">
+                        <div class="detail-left">
+                            <div class="serial-num">QQ: <a href="https://qm.qq.com/q/irysRcYiC4"
+                                    target="_blank"><span>#3578235616</span></a></div>
+                            <div class="signature-box">
+                                <span class="signature">Stay Hungry. Stay Foolish.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BUTTON CARTRIDGE (Pure White Solid Panel - 110% of card-bottom height, positioned on the left) -->
+                    <div class="button-cartridge">
+                        <img src="/res/qrcode_QQ3578235616.png" alt="QQ QR Code" class="cartridge-qr">
+                        <div class="card-buttons">
+                            <a href="/home/" class="card-btn">Home</a>
+                            <div class="btn-divider"></div>
+                            <a href="/p/contact#furry" class="card-btn">Contact</a>
+                            <div class="btn-divider"></div>
+                            <a href="/p/sponsor" class="card-btn">Sponsor</a>
+                        </div>
+                    </div>
+
+                    <!-- Micro Tactical Footer -->
+                    <div class="tactical-footer">
+                        Classification: MeT secure node<br>
+                        Copyright © 2026 MeTerminator. All Rights Reserved.
+                    </div>
                 </div>
             </div>
-            <a href="https://qm.qq.com/q/irysRcYiC4" class="primary-btn" target="_blank">添加好友</a>
         </div>
     </div>
 
-    <div class="footer-selector">
-        <div class="selector-toggle" onclick="toggleSelector()" id="selector-toggle">
-            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-        </div>
-        <div class="footer-nav-wrapper" id="selector-wrapper">
-            <div class="footer-nav">
-                <div id="nav-main" class="nav-item" onclick="switchTo('main')">QQ for Main</div>
-                <div id="nav-furry" class="nav-item" onclick="switchTo('furry')">QQ for Furry</div>
-            </div>
-        </div>
-    </div>
-
-    <div id="toast" class="toast">QQ 已复制到剪贴板</div>
-
-    <script src="/res/bio.js"></script>
-    <!-- Vercel Analytics -->
-    <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
-    <!-- Vercel Speed Insights -->
+    <!-- 3D INTERACTIVE TILT & HOLOGRAM SHEEN SCRIPT -->
     <script>
-        window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+        const cardWrapper = document.getElementById('pass-card-wrapper');
+        const charImage = document.getElementById('char-image');
+
+        // Dynamic Parallax hover tilt effect (monitors entire screen width & height)
+        document.addEventListener('mousemove', (e) => {
+            if (!cardWrapper) return;
+            const rect = cardWrapper.getBoundingClientRect();
+
+            // Center of the card
+            const cardCenterX = rect.left + rect.width / 2;
+            const cardCenterY = rect.top + rect.height / 2;
+
+            // Offset of mouse from card center
+            const dx = e.clientX - cardCenterX;
+            const dy = e.clientY - cardCenterY;
+
+            // Half of the viewport size as the normalization range
+            const rangeX = window.innerWidth / 2;
+            const rangeY = window.innerHeight / 2;
+
+            // Normalize ratio between -1 and 1
+            const ratioX = dx / rangeX;
+            const ratioY = dy / rangeY;
+
+            // Tilt rotation angles (max 14 degrees)
+            const rx = -ratioY * 14;
+            const ry = ratioX * 14;
+
+            // Apply rotation
+            cardWrapper.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+
+            // Parallax depth effect for character (slightly shifts in opposite direction, max 10px)
+            if (charImage) {
+                const charX = ratioX * -10;
+                const charY = ratioY * -10;
+                charImage.style.transform = `translateZ(50px) translate(${charX}px, ${charY}px) scale(1.05)`;
+            }
+
+            // Holographic sweep coordinate mapping (0% to 100% relative to card bounds)
+            const sheenX = ((e.clientX - rect.left) / rect.width) * 100;
+            const sheenY = ((e.clientY - rect.top) / rect.height) * 100;
+            cardWrapper.style.setProperty('--sheen-x', `${sheenX}%`);
+            cardWrapper.style.setProperty('--sheen-y', `${sheenY}%`);
+
+            // Solid white background shadow shift in opposite direction of mouse (up to 5%)
+            const shadowShiftX = -ratioX * 5;
+            const shadowShiftY = -ratioY * 5;
+            cardWrapper.style.setProperty('--shadow-shift-x', `${shadowShiftX}%`);
+            cardWrapper.style.setProperty('--shadow-shift-y', `${shadowShiftY}%`);
+        });
+
+        document.addEventListener('mouseleave', resetCard);
+
+        function resetCard() {
+            if (!cardWrapper) return;
+            cardWrapper.style.transform = 'rotateX(0deg) rotateY(0deg)';
+            if (charImage) {
+                charImage.style.transform = 'translateZ(30px) translate(0px, 0px) scale(1.05)';
+            }
+            cardWrapper.style.setProperty('--sheen-x', '50%');
+            cardWrapper.style.setProperty('--sheen-y', '50%');
+            cardWrapper.style.setProperty('--shadow-shift-x', '0%');
+            cardWrapper.style.setProperty('--shadow-shift-y', '0%');
+        }
     </script>
-    <script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 
 </html>
